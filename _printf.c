@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * _printf - produces output according to a format
  * @format: pointer to a string composed of zero or more directives
@@ -12,7 +12,6 @@ int _printf(const char *format, ...)
 	int len = 0;
 	va_list ap;
 	const char *frmtp = format;
-	printerp printer;
 
 	if (frmtp != NULL)
 	{
@@ -21,11 +20,7 @@ int _printf(const char *format, ...)
 		{
 			if (*frmtp == '%' && *(++frmtp) != '%')
 			{
-				printer = get_printer(frmtp);
-				if (printer != NULL)
-				{
-					len += printer(va_arg(ap, void *));
-				}
+				len += spec_printer(frmtp, ap);
 			}
 			else
 			{
@@ -34,6 +29,10 @@ int _printf(const char *format, ...)
 				frmtp++;
 		}
 		va_end(ap);
+	}
+	else
+	{
+		return (-1);
 	}
 
 	return (len);
