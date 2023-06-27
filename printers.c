@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * print_ch - prints a character to stdout
@@ -69,24 +70,29 @@ int print_str(const void *s)
  * Return: integer length
  */
 
-int print_int(const void *n)
+int print_int(int n)
 {
 	int len = 0;
-	const int *np = n;
 	int rest, outnum;
-	void *restp, *outnump;
+	int *outnump;
+	char negative = '-';
 
-	rest = *np;
+	rest = n;
+	if (rest < 0)
+	{
+		rest = -rest;
+		print_sch(&negative);
+	}
 	outnum = rest % 10;
 	if (rest > 9)
 	{
 		rest = rest / 10;
-		restp = &rest;
-		len = print_int(restp);
+		len = print_int(rest);
 	}
-	outnum = outnum + 48;
+	outnum += 48;
 	outnump = &outnum;
-	len += print_ch(outnump);
+
+	len += print_sch(outnump);
 
 	/* check if len is negative*/
 	return (len);
