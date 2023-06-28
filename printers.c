@@ -109,7 +109,7 @@ int print_bin(unsigned int n)
 	int len = 0;
 	unsigned int rest, outnum;
 	unsigned int *outnump;
-	
+
 	rest = n;
 	outnum = rest % 2;
 	if (rest > 1)
