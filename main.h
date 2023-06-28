@@ -10,4 +10,5 @@ int print_ch(const void *ch);
 int print_sch(const void *ch);
 int print_str(const void *s);
 int print_int(int n);
+int print_bin(unsigned int n);
 #endif

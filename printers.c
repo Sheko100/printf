@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
  * print_ch - prints a character to stdout
@@ -95,5 +94,32 @@ int print_int(int n)
 	len += print_sch(outnump);
 
 	/* check if len is negative*/
+	return (len);
+}
+
+/**
+ * print_bin - prints binary to stdout
+ * @n: integer to print in binary format
+ *
+ * Return: bytes written
+ */
+
+int print_bin(unsigned int n)
+{
+	int len = 0;
+	unsigned int rest, outnum;
+	unsigned int *outnump;
+	
+	rest = n;
+	outnum = rest % 2;
+	if (rest > 1)
+	{
+		rest = rest / 2;
+		len = print_bin(rest);
+	}
+	outnum += 48;
+	outnump = &outnum;
+
+	len += print_sch(outnump);
 	return (len);
 }
