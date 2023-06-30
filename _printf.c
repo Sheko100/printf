@@ -1,5 +1,5 @@
 #include "main.h"
-#include <stdio.h>
+
 /**
  * _printf - produces output according to a format
  * @format: pointer to a string composed of zero or more directives
@@ -9,7 +9,7 @@
 
 int _printf(const char *format, ...)
 {
-	int len = 0;
+	int len = 0, written = 0;
 	va_list ap;
 	const char *frmtp = format;
 
@@ -20,7 +20,10 @@ int _printf(const char *format, ...)
 		{
 			if (*frmtp == '%' && *(++frmtp) != '%')
 			{
-				len += spec_printer(frmtp, ap);
+				written = spec_printer(frmtp, ap);
+				if (written < 0)
+					return (-1);
+				len += written;
 			}
 			else
 			{

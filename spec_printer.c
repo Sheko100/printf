@@ -30,6 +30,9 @@ int spec_printer(const char *spec, va_list ap)
 		case 'b':
 			len = print_bin(va_arg(ap, unsigned int));
 			break;
+		case '\0':
+			len = -1;
+			break;
 		default:
 			specstr[1] = *spec;
 			len = print_str(specstr);
